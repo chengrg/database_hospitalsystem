@@ -59,7 +59,7 @@ DROP TABLE temp;
     
          
      
-Full SQL Schema:  
+##Full SQL Schema:  
 CREATE TABLE hospital(
 name VARCHAR(255),
 address VARCHAR(255) NOT NULL,
