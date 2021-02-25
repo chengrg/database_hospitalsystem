@@ -33,7 +33,7 @@ CREATE TRIGGER check_update
     FOR EACH ROW
     EXECUTE FUNCTION check_pub_num();
 
-Loading new columns to person:  
+4. Loading new columns to person:  
 Since a large portion of the database directly or indirectly depends on the ‘person’ entity, we don’t want to simply drop ‘person’, make modifications and re-add. Instead, we create a temporary table, load the new data into this table, then add columns to the original ‘person’ table, and then insert the partial data into the original table to its correct location by referencing the temp table. Below is the loading plan. Thanks to the trigger, pub_num is automatically calculated for each person after the data loading.
 
 CREATE TABLE temp(
@@ -52,13 +52,15 @@ UPDATE person AS p SET(tel, publication, pub_num)=(t.tel, t.publication, t.pub_n
 FROM temp t WHERE t.id=p.id;
 
 DROP TABLE temp;
-
-
   
-   
-   
-   
-   
+    
+    
+     
+&nbsp
+&nbsp
+&nbsp
+     
+     
 Full SQL Schema:  
 CREATE TABLE hospital(
 name VARCHAR(255),
