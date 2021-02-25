@@ -1,7 +1,7 @@
 Xuan Zhao (xz2982) database account
 Rui Cheng (rc3372)
 
-Composite type
+Composite type  
 We want to change the data type of the ‘tel’ attribute of ‘person’ entity, from a single integer to a composite of area_code and subscriber_numer. This is because the telephone number is by nature a composition of these two fields, and by separating the area code and subscriber number, we made possible the assertion of validity of telephone numbers, and the area code also contains extra (geologic) information of the line holder, which is made explicit by the composite data type.
 
 CREATE TYPE tel_num AS (area_code integer,
@@ -10,7 +10,7 @@ subscriber_number integer
 ALTER TABLE person DROP COLUMN tel;
 ALTER TABLE person ADD COLUMN tel tel_num;
 
-Array type
+Array type  
 We added a new attribute ‘publication’ to ‘person’, enabling the database to keep records of each hospital staff’s publications, which can be useful in many ways. Since a person can have multiple publications, making it a string array is reasonable. We also enable the database to keep track of, and automatically update the total number of publications of each person by adding a ‘pub_num’ attribute to person, which is updated automatically by a trigger introduced below.
 
 ALTER TABLE person ADD COLUMN publication varchar(127)[];
@@ -35,7 +35,7 @@ CREATE TRIGGER check_update
     FOR EACH ROW
     EXECUTE FUNCTION check_pub_num();
 
-Loading new columns to person:
+Loading new columns to person:  
 Since a large portion of the database directly or indirectly depends on the ‘person’ entity, we don’t want to simply drop ‘person’, make modifications and re-add. Instead, we create a temporary table, load the new data into this table, then add columns to the original ‘person’ table, and then insert the partial data into the original table to its correct location by referencing the temp table. Below is the loading plan. Thanks to the trigger, pub_num is automatically calculated for each person after the data loading.
 
 CREATE TABLE temp(
@@ -57,7 +57,7 @@ DROP TABLE temp;
 
 
 
-Full SQL Schema:
+Full SQL Schema:  
 CREATE TABLE hospital(
 name VARCHAR(255),
 address VARCHAR(255) NOT NULL,
