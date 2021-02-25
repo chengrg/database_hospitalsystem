@@ -1,7 +1,5 @@
-Xuan Zhao (xz2982) database account
-Rui Cheng (rc3372)
-
-Composite type  
+Update:  
+1. Composite type  
 We want to change the data type of the ‘tel’ attribute of ‘person’ entity, from a single integer to a composite of area_code and subscriber_numer. This is because the telephone number is by nature a composition of these two fields, and by separating the area code and subscriber number, we made possible the assertion of validity of telephone numbers, and the area code also contains extra (geologic) information of the line holder, which is made explicit by the composite data type.
 
 CREATE TYPE tel_num AS (area_code integer,
@@ -10,13 +8,13 @@ subscriber_number integer
 ALTER TABLE person DROP COLUMN tel;
 ALTER TABLE person ADD COLUMN tel tel_num;
 
-Array type  
+2. Array type  
 We added a new attribute ‘publication’ to ‘person’, enabling the database to keep records of each hospital staff’s publications, which can be useful in many ways. Since a person can have multiple publications, making it a string array is reasonable. We also enable the database to keep track of, and automatically update the total number of publications of each person by adding a ‘pub_num’ attribute to person, which is updated automatically by a trigger introduced below.
 
 ALTER TABLE person ADD COLUMN publication varchar(127)[];
 ALTER TABLE person ADD COLUMN pub_num integer;
 
-Trigger  
+3. Trigger  
 The trigger is called “check_update” and the function is called “check_pub_num”. It is intended to automatically update the number of publications from the person when there is an update on this person’s publication record, instead of updating the number of publications manually by users. For example, if a person of two publications publishes a new journal, when the journal is added to the person’s publication record, the number of publications will change from two to three by the trigger.
 
 CREATE FUNCTION check_pub_num() RETURNS TRIGGER AS $$
