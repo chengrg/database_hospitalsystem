@@ -96,17 +96,15 @@ FOREIGN KEY(nurse_id) REFERENCES nurse(nurse_id)
 
 
 Attributes:
-department
-department_name, budget
-doctor
-doctor_id, name, level
+department(department_name, budget)  
+doctor(doctor_id, name, level)  
 nurse
-nurse_id, name
+(nurse_id, name)  
 surgery
-surgery_id, surgery_title, difficulty
+(surgery_id, surgery_title, difficulty)  
 consultation
-consultation_id, category
+(consultation_id, category)  
 time_slot
-date, slot
+(date, slot)  
 location
-building, room
+(building, room)  
