@@ -53,13 +53,11 @@ FROM temp t WHERE t.id=p.id;
 
 DROP TABLE temp;
   
-    
-    
+       
      
-&nbsp
-&nbsp
-&nbsp
      
+    
+         
      
 Full SQL Schema:  
 CREATE TABLE hospital(
