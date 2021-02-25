@@ -16,7 +16,7 @@ We added a new attribute ‘publication’ to ‘person’, enabling the databas
 ALTER TABLE person ADD COLUMN publication varchar(127)[];
 ALTER TABLE person ADD COLUMN pub_num integer;
 
-Trigger
+Trigger  
 The trigger is called “check_update” and the function is called “check_pub_num”. It is intended to automatically update the number of publications from the person when there is an update on this person’s publication record, instead of updating the number of publications manually by users. For example, if a person of two publications publishes a new journal, when the journal is added to the person’s publication record, the number of publications will change from two to three by the trigger.
 
 CREATE FUNCTION check_pub_num() RETURNS TRIGGER AS $$
@@ -56,7 +56,11 @@ FROM temp t WHERE t.id=p.id;
 DROP TABLE temp;
 
 
-
+  
+   
+   
+   
+   
 Full SQL Schema:  
 CREATE TABLE hospital(
 name VARCHAR(255),
